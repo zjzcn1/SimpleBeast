@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/beast-app.dir/src/http_session.cpp.o CMakeFiles/beast-app.dir/src/listener.cpp.o CMakeFiles/beast-app.dir/src/main.cpp.o CMakeFiles/beast-app.dir/src/misc.cpp.o CMakeFiles/beast-app.dir/src/websocket_session.cpp.o  -o beast-app -rdynamic -lboost_system -pthread -lg3logger 

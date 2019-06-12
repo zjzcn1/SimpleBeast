@@ -1,0 +1,37 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /vagrant/Source/boost-beast-example/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_acbc0/fast"
+make: Warning: File 'Makefile' has modification time 1.6 s in the future
+/usr/bin/make -f CMakeFiles/cmTC_acbc0.dir/build.make CMakeFiles/cmTC_acbc0.dir/build
+make[1]: Entering directory '/vagrant/Source/boost-beast-example/build/CMakeFiles/CMakeTmp'
+make[1]: Warning: File 'CMakeFiles/cmTC_acbc0.dir/flags.make' has modification time 1.6 s in the future
+Building C object CMakeFiles/cmTC_acbc0.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_acbc0.dir/CheckSymbolExists.c.o   -c /vagrant/Source/boost-beast-example/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_acbc0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_acbc0.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_acbc0.dir/CheckSymbolExists.c.o  -o cmTC_acbc0 -rdynamic 
+CMakeFiles/cmTC_acbc0.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_acbc0.dir/build.make:97: recipe for target 'cmTC_acbc0' failed
+make[1]: *** [cmTC_acbc0] Error 1
+make[1]: Leaving directory '/vagrant/Source/boost-beast-example/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_acbc0/fast' failed
+make: *** [cmTC_acbc0/fast] Error 2
+
+File /vagrant/Source/boost-beast-example/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
