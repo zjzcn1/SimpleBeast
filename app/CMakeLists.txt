@@ -14,7 +14,8 @@ include_directories (
 )
 
 
-file (GLOB APP_SOURCE_FILES "${APP_SRC_PATH}/*.cpp")
+file (GLOB_RECURSE APP_SOURCE_FILES CONFIGURE_DEPENDS "${APP_SRC_PATH}/*.cpp" "APP_INCLUDE_PATH/*.h"
+        "APP_INCLUDE_PATH/*.hpp")
 message(STATUS ${APP_SOURCE_FILES} )
 
 #set target executable

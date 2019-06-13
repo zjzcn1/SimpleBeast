@@ -1,11 +1,10 @@
 #include <utility>
 #include <iostream>
 
-#include "http_session.hpp"
-#include "websocket_session.hpp"
+#include "http_session.h"
+#include "websocket_session.h"
 #include "handle_request.hpp"
 
-using tcp = boost::asio::ip::tcp;               // from <boost/asio/ip/tcp.hpp>
 namespace http = boost::beast::http;            // from <boost/beast/http.hpp>
 
 extern void fail(boost::system::error_code ec, char const* what);
@@ -107,7 +106,7 @@ void http_session::on_read(boost::system::error_code ec)
         return fail(ec, "read");
 
     // See if it is a WebSocket Upgrade
-    if (websocket::is_upgrade(req_))
+    if (boost::beast::websocket::is_upgrade(req_))
     {
         // Make timer expire immediately, by setting expiry to time_point::min we can detect
         // the upgrade to websocket in the timer handler

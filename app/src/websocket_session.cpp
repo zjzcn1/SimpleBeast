@@ -1,10 +1,9 @@
 #include <iostream>
 #include <istream>
 
-#include "websocket_session.hpp"
-#include "misc.hpp"
+#include "websocket_session.h"
+#include "misc.h"
 
-using tcp = boost::asio::ip::tcp;               // from <boost/asio/ip/tcp.hpp>
 namespace http = boost::beast::http;            // from <boost/beast/http.hpp>
 namespace websocket = boost::beast::websocket;  // from <boost/beast/websocket.hpp>
 

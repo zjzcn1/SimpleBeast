@@ -8,10 +8,12 @@
 
 #include <g3log/g3log.hpp>
 
+using tcp = boost::asio::ip::tcp;               // from <boost/asio/ip/tcp.hpp>
+
 // Echoes back all received WebSocket messages
 class websocket_session : public std::enable_shared_from_this<websocket_session>
 {
-	websocket::stream<tcp::socket> ws_;
+	boost::beast::websocket::stream<tcp::socket> ws_;
 	boost::asio::strand<
 		boost::asio::io_context::executor_type> strand_;
 	boost::asio::steady_timer timer_;
@@ -24,7 +26,7 @@ public:
 
     // Start the asynchronous operation
     template<class Body, class Allocator>
-    void do_accept(http::request<Body, http::basic_fields<Allocator>> req)
+    void do_accept(boost::beast::http::request<Body, boost::beast::http::basic_fields<Allocator>> req)
     {
         // Set the control callback. This will be called
         // on every incoming ping, pong, and close frame.
@@ -64,7 +66,7 @@ public:
 	// Called after a ping is sent.
 	void on_ping(boost::system::error_code ec);
 
-	void on_control_callback(websocket::frame_type kind, boost::beast::string_view payload);
+	void on_control_callback(boost::beast::websocket::frame_type kind, boost::beast::string_view payload);
 
 	void do_read();
 

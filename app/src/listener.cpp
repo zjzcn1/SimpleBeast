@@ -1,6 +1,7 @@
 #include <utility>
-#include "listener.hpp"
-#include "http_session.hpp"
+
+#include "listener.h"
+#include "http_session.h"
 
 extern void fail(boost::system::error_code ec, char const* what);
 

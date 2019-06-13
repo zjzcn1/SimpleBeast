@@ -2,7 +2,11 @@
 #define HTTP_SESSION_HPP
 
 #include <boost/beast.hpp>
+#include <boost/asio/strand.hpp>
+#include <boost/asio/bind_executor.hpp>
 #include <boost/asio/ip/tcp.hpp>
+
+using tcp = boost::asio::ip::tcp;               // from <boost/asio/ip/tcp.hpp>
 
 // Handles an HTTP server connection
 class http_session : public std::enable_shared_from_this<http_session>
@@ -38,17 +42,17 @@ class http_session : public std::enable_shared_from_this<http_session>
 
         // Called by the HTTP handler to send a response.
         template<bool isRequest, class Body, class Fields>
-        void operator()(http::message<isRequest, Body, Fields>&& msg)
+        void operator()(boost::beast::http::message<isRequest, Body, Fields>&& msg)
         {
             // This holds a work item
             struct work_impl : work
             {
                 http_session& self_;
-                http::message<isRequest, Body, Fields> msg_;
+                boost::beast::http::message<isRequest, Body, Fields> msg_;
 
                 work_impl(
                     http_session& self,
-                    http::message<isRequest, Body, Fields>&& msg)
+                    boost::beast::http::message<isRequest, Body, Fields>&& msg)
                     : self_(self)
                     , msg_(std::move(msg))
                 {
@@ -57,7 +61,7 @@ class http_session : public std::enable_shared_from_this<http_session>
                 void
                 operator()()
                 {
-                    http::async_write(
+                    boost::beast::http::async_write(
                         self_.socket_,
                         msg_,
                         boost::asio::bind_executor(
@@ -86,7 +90,7 @@ class http_session : public std::enable_shared_from_this<http_session>
     boost::asio::steady_timer timer_;
     boost::beast::flat_buffer buffer_;
     std::shared_ptr<std::string const> doc_root_;
-    http::request<http::string_body> req_;
+    boost::beast::http::request<boost::beast::http::string_body> req_;
     http_session::queue queue_;
 
 public:

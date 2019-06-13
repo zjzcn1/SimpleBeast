@@ -1,7 +1,0 @@
-		g3log created log at: Wed Jun 12 19:39:46 2019
-		LOG format: [YYYY/MM/DD hh:mm:ss uuu* LEVEL THREAD_ID FILE->FUNCTION:LINE] message
-		(uuu*: microseconds fractions of the seconds value)
-
-2019/06/12 19:39:46 921834	INFO [139987500238784 main.cpp->main:47]	serving http://0.0.0.0:9999
-2019/06/12 19:39:46 921994	INFO [139987500238784 main.cpp->main:48]	serving ws://0.0.0.0:9999
-g3log g3FileSink shutdown at: 19:39:51 492804

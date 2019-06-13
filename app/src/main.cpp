@@ -2,9 +2,9 @@
 #include <g3log/logworker.hpp>
 #include <boost/asio/signal_set.hpp>
 
-#include "misc.hpp"
-#include "websocket_session.hpp"
-#include "listener.hpp"
+#include "misc.h"
+#include "websocket_session.h"
+#include "listener.h"
 #include "handle_request.hpp"
 
 
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 	auto const threads = std::max<int>(1, std::atoi(argv[4]));*/
 
 	auto worker = g3::LogWorker::createLogWorker();
-	auto handle= worker->addDefaultLogger(argv[0], ".");
+	auto handle= worker->addDefaultLogger(argv[0], "logs/");
 	g3::initializeLogging(worker.get());
 	std::future<std::string> log_file_name = handle->call(&g3::FileSink::fileName);
 

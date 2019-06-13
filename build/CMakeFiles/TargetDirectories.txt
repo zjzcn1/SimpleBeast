@@ -1,5 +1,0 @@
-/vagrant/Source/boost-beast-example/build/CMakeFiles/edit_cache.dir
-/vagrant/Source/boost-beast-example/build/CMakeFiles/rebuild_cache.dir
-/vagrant/Source/boost-beast-example/build/app/CMakeFiles/edit_cache.dir
-/vagrant/Source/boost-beast-example/build/app/CMakeFiles/rebuild_cache.dir
-/vagrant/Source/boost-beast-example/build/app/CMakeFiles/beast-app.dir
